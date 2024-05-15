@@ -31,9 +31,9 @@ connection.connect(function(err) {
 
 function verifyToken(req, res, next) {
   const token = req.headers['x-access-token'];
-  if (!token) return res.status(403).json({ message: 'Token não fornecido' });
+  if (!token) return res.status(403).send({ auth: false, message: 'No token provided.' });
   jwt.verify(token, secret, function(err, decoded) {
-    if (err) return res.status(500).json({ message: 'Falha ao autenticar o token' });
+    if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
     req.userId = decoded.id;
     next();
   });
@@ -58,7 +58,7 @@ app.post('/login', (req, res) => {
     if (user) {
       bcrypt.compare(senha, user.senha, function(err, result) {
         if (result) {
-          const token = jwt.sign({ id: user.id }, secret, { expiresIn: '1h' });
+          const token = jwt.sign({ id: user.id }, secret, { expiresIn: '10h' });
           res.json({ token });
         } else {
           res.status(401).json({ message: 'Senha incorreta' });
@@ -69,10 +69,10 @@ app.post('/login', (req, res) => {
     }
   });
 });
-app.get('/materiais/:id', verifyToken, (req, res) => {
-  const { id } = req.params;
+
+app.get('/materiais', verifyToken, (req, res) => {
   const usuario_id = req.userId;
-  connection.query('SELECT * FROM materiais WHERE id = ? AND usuario_id = ?', [id, usuario_id], function(err, rows) {
+  connection.query('SELECT * FROM materiais WHERE usuario_id = ?', [usuario_id], function(err, rows) {
     if (err) throw err;
     res.json(rows);
   });
@@ -87,20 +87,19 @@ app.post('/materiais', verifyToken, (req, res) => {
   });
 });
 
-app.delete('/materiais/:id', verifyToken, (req, res) => {
-  const { id } = req.params;
+app.put('/materiais', verifyToken, (req, res) => {
+  const { id, nome, quantidade } = req.body;
   const usuario_id = req.userId;
-  connection.query('DELETE FROM materiais WHERE id = ? AND usuario_id = ?', [id, usuario_id], function(err, rows) {
+  connection.query('UPDATE materiais SET nome = ?, quantidade = ? WHERE id = ? AND usuario_id = ?', [nome, quantidade, id, usuario_id], function(err, rows) {
     if (err) throw err;
     res.json(rows);
   });
 });
 
-app.put('/materiais/:id', verifyToken, (req, res) => {
-  const { id } = req.params;
-  const { nome, quantidade } = req.body;
+app.delete('/materiais', verifyToken, (req, res) => {
+  const { id } = req.body;
   const usuario_id = req.userId;
-  connection.query('UPDATE materiais SET nome = ?, quantidade = ? WHERE id = ? AND usuario_id = ?', [nome, quantidade, id, usuario_id], function(err, rows) {
+  connection.query('DELETE FROM materiais WHERE id = ? AND usuario_id = ?', [id, usuario_id], function(err, rows) {
     if (err) throw err;
     res.json(rows);
   });
