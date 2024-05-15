@@ -7,6 +7,10 @@ const api = {
   registrar: async (nome, email, senha) => {
     try {
       const response = await axios.post(`${API_URL}/registrar`, { nome, email, senha });
+      const { token } = response.data;
+      if (token) {
+        localStorage.setItem('token', token);
+      }
       return response.data;
     } catch (error) {
       console.error('Erro ao registrar usuário:', error);
@@ -18,6 +22,10 @@ const api = {
   login: async (email, senha) => {
     try {
       const response = await axios.post(`${API_URL}/login`, { email, senha });
+      const { token } = response.data;
+      if (token) {
+        localStorage.setItem('token', token);
+      }
       return response.data;
     } catch (error) {
       console.error('Erro ao fazer login:', error);
@@ -25,9 +33,15 @@ const api = {
     }
   },
 
+  // Função para obter o token armazenado
+  getToken: () => {
+    return localStorage.getItem('token');
+  },
+
   // Função para buscar todos os materiais
-  getMateriais: async (token) => {
+  getMateriais: async () => {
     try {
+      const token = api.getToken();
       const response = await axios.get(`${API_URL}/materiais`, {
         headers: { 'x-access-token': token },
       });
@@ -39,8 +53,9 @@ const api = {
   },
 
   // Função para adicionar um novo material
-  addMaterial: async (token, nome, quantidade) => {
+  addMaterial: async (nome, quantidade) => {
     try {
+      const token = api.getToken();
       const response = await axios.post(`${API_URL}/materiais`, { nome, quantidade }, {
         headers: { 'x-access-token': token },
       });
@@ -52,8 +67,9 @@ const api = {
   },
 
   // Função para atualizar um material existente
-  updateMaterial: async (token, id, nome, quantidade) => {
+  updateMaterial: async (id, nome, quantidade) => {
     try {
+      const token = api.getToken();
       const response = await axios.put(`${API_URL}/materiais`, { id, nome, quantidade }, {
         headers: { 'x-access-token': token },
       });
@@ -65,8 +81,9 @@ const api = {
   },
 
   // Função para deletar um material
-  deleteMaterial: async (token, id) => {
+  deleteMaterial: async (id) => {
     try {
+      const token = api.getToken();
       const response = await axios.delete(`${API_URL}/materiais`, {
         headers: { 'x-access-token': token },
         data: { id },
