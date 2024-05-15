@@ -14,12 +14,16 @@ const AuthPage = () => {
   };
 
   return (
-    <div>
+    <div className="auth-container">
       {!token && (
-        <div>
-          <Login onLogin={handleLogin} />
-          <Cadastro onLogin={handleLogin} />
-        </div>
+        <>
+          <div className="sub-auth-container">
+            <Login onLogin={handleLogin} />
+          </div>
+          <div className="sub-auth-container">
+            <Cadastro onLogin={handleLogin} />
+          </div>
+        </>
       )}
     </div>
   );

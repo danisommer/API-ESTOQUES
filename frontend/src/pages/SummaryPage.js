@@ -67,8 +67,8 @@ const SummaryPage = () => {
 
     return (
         <div>
-            <h1>Summary Page</h1>
-            <div>
+            <h1>Sumário</h1>
+            <div className="material-form">
                 <input
                     type="text"
                     placeholder="Nome do Material"

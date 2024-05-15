@@ -11,15 +11,34 @@ body {
 /* Flexbox Container */
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
+  gap: 20px;
+  padding: 20px;
+  background: #ebeaea;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 20px;
+}
+
+.material-form {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os elementos */
+  margin-bottom: 20px; /* Adicionando um espaço na parte inferior */
 }
 
 /* Flexbox for Authentication Components */
 .auth-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background: #ebeaea;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 20px;
+}
+
+.sub-auth-container {
   display: flex;
   justify-content: center;
   gap: 20px;
