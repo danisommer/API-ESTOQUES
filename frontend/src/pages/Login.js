@@ -17,7 +17,7 @@ const Login = ({ onLogin }) => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Já tenho uma conta</h2>
       <form onSubmit={handleLogin}>
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
