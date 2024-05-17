@@ -81,7 +81,7 @@ app.post('/registrar', (req, res) => {
           return res.status(500).json({ message: 'Error inserting user into database', error: err });
         }
         const userId = result.insertId;
-        const token = jwt.sign({ id: userId }, secret, { expiresIn: '10h' });
+        const token = jwt.sign({ id: userId }, secret, { expiresIn: '3600' }); //3600
         res.json({ token });
       });
     });
@@ -106,7 +106,7 @@ app.post('/login', (req, res) => {
           return res.status(500).json({ message: 'Error comparing passwords', error: err });
         }
         if (result) {
-          const token = jwt.sign({ id: user.id }, secret, { expiresIn: '10h' });
+          const token = jwt.sign({ id: user.id }, secret, { expiresIn: '3600' });
           res.json({ token });
         } else {
           res.status(401).json({ message: 'Incorrect password' });
@@ -186,3 +186,4 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send({ message: 'Something went wrong!', error: err });
 });
+

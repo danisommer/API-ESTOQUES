@@ -33,6 +33,10 @@ const api = {
     }
   },
 
+  logout: () => {
+    localStorage.removeItem('token');
+  },
+
   // Função para obter o token armazenado
   getToken: () => {
     return localStorage.getItem('token');

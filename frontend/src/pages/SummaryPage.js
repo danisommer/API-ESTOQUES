@@ -59,14 +59,28 @@ const SummaryPage = () => {
         }
     };
 
+    const handleLogout = () => {
+        api.logout();
+        handleHome();
+    };
+
+
     const handleEditMaterial = (material) => {
         setEditingMaterial(material);
         setNome(material.nome);
         setQuantidade(material.quantidade);
     };
 
+    const handleHome = () => {
+       navigate('/');
+      };
+
     return (
         <div>
+            <div className='header'>
+                <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleHome} />
+                <button onClick={handleLogout}>Sair</button>
+            </div>
             <h1>Sumário</h1>
             <div className="material-form">
                 <input
