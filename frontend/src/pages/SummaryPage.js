@@ -72,13 +72,13 @@ const SummaryPage = () => {
     };
 
     const handleHome = () => {
-       navigate('/');
-      };
+        navigate('/');
+    };
 
     return (
         <div>
             <div className='header'>
-                <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleHome} />
+                <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleLogout} />
                 <button onClick={handleLogout}>Sair</button>
             </div>
             <div className="material-form">

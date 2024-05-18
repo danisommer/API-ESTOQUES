@@ -25,11 +25,11 @@ const Login = () => {
 
   const handleHome = () => {
     navigate('/');
-   };
+  };
 
   return (
     <div>
-       <div className='header'>
+      <div className='header'>
         <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleHome} />
       </div>
       <div className='content'>
@@ -41,7 +41,7 @@ const Login = () => {
         </form>
       </div>
     </div>
-   
+
   );
 };
 

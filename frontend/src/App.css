@@ -28,8 +28,10 @@ body {
 
 .material-form {
   display: flex;
-  gap: 10px; /* Espaçamento entre os elementos */
-  margin-bottom: 20px; /* Adicionando um espaço na parte inferior */
+  gap: 10px;
+  /* Espaçamento entre os elementos */
+  margin-bottom: 20px;
+  /* Adicionando um espaço na parte inferior */
 }
 
 /* Flexbox for Authentication Components */
@@ -94,7 +96,7 @@ button:hover {
   background-color: #0056b3;
 }
 
-.login-button{
+.login-button {
   background-color: #ced4da;
 }
 
@@ -159,6 +161,5 @@ button:hover {
 }
 
 .logo {
-  width: 5%; 
+  width: 5%;
 }
-
