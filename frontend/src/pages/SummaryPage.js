@@ -81,7 +81,6 @@ const SummaryPage = () => {
                 <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleHome} />
                 <button onClick={handleLogout}>Sair</button>
             </div>
-            <h1>Sumário</h1>
             <div className="material-form">
                 <input
                     type="text"

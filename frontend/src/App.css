@@ -8,6 +8,12 @@ body {
   color: #343a40;
 }
 
+.content {
+  align-items: center;
+  padding: 5px;
+  margin: 20px;
+}
+
 /* Flexbox Container */
 .container {
   display: flex;
@@ -88,6 +94,15 @@ button:hover {
   background-color: #0056b3;
 }
 
+.login-button{
+  background-color: #ced4da;
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 /* Summary Page Styles */
 .summary-container {
   width: 100%;
@@ -136,7 +151,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 5px;
   background: #ffffff;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -146,3 +161,4 @@ button:hover {
 .logo {
   width: 5%; 
 }
+

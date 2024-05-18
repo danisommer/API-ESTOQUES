@@ -26,14 +26,14 @@ const Cadastro = () => {
 
   const handleHome = () => {
     navigate('/');
-   };
+  };
 
   return (
     <div>
-       <div>
-        <div className='header'>
-          <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleHome} />
-        </div>
+      <div className='header'>
+        <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleHome} />
+      </div>
+      <div className='content'>
         <h2>Cadastro</h2>
         <form onSubmit={handleCadastro}>
           <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />

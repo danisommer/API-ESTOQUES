@@ -32,7 +32,7 @@ const Login = () => {
        <div className='header'>
         <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleHome} />
       </div>
-      <div>
+      <div className='content'>
         <h2>Já tenho uma conta</h2>
         <form onSubmit={handleLogin}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
