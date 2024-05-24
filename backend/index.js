@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 
 const port = 3001;
 
-app.listen(port,'localhost', () => {
+app.listen(port, 'localhost', () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
@@ -27,9 +27,9 @@ app.use(express.json());
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'DZS2102',
+  password: 'dzs2102',
   database: 'sistema_estoque',
-  insecureAuth : true
+  insecureAuth: true
 });
 
 connection.connect(function(err) {
@@ -39,6 +39,7 @@ connection.connect(function(err) {
   }
   console.log("Connected to database!");
 });
+
 
 function verifyToken(req, res, next) {
   const token = req.headers['x-access-token'];
