@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../services/api';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 const Cadastro = () => {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [token, setToken] = useState('');
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [token, setToken] = useState("");
   const navigate = useNavigate();
 
   const onLogin = (token) => {
     setToken(token);
-    navigate('/summary');
+    navigate("/summary");
   };
 
   const handleCadastro = async (e) => {
@@ -20,25 +20,45 @@ const Cadastro = () => {
       const response = await api.registrar(nome, email, senha);
       onLogin(api.getToken());
     } catch (error) {
-      console.error('Erro ao cadastrar:', error);
+      console.error("Erro ao cadastrar:", error);
     }
   };
 
   const handleHome = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
     <div>
-      <div className='header'>
-        <img className="logo" src="../Storage_icon.png" alt="Logo" onClick={handleHome} />
+      <div className="header">
+        <img
+          className="logo"
+          src="../Storage_icon.png"
+          alt="Logo"
+          onClick={handleHome}
+        />
       </div>
-      <div className='content'>
+      <div className="content">
         <h2>Cadastro</h2>
         <form onSubmit={handleCadastro}>
-          <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
           <button type="submit">Cadastrar</button>
         </form>
       </div>
